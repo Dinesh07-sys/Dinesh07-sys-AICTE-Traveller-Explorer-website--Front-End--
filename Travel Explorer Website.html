@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveller Explorer</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Search Section */
+        .search-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        #searchInput {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 300px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #searchInput:focus {
+            border-color: #667eea;
+        }
+
+        #searchBtn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        #searchBtn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Weather Section */
+        .weather-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .weather-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        #weatherInfo {
+            font-size: 1.1rem;
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .weather-icon img {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Photos Section */
+        .photos-section {
+            margin-bottom: 2rem;
+        }
+
+        .photos-section h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .photo-card p {
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Default Content (Static Example for Paris) */
+        .default-content {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .search-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #searchInput {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .photos-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Traveller Explorer</h1>
+        <p>Discover destinations, view stunning photos, and check the weather to plan your next trip effortlessly.</p>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Enter a destination (e.g., Paris, Tokyo)" value="Paris" />
+            <button id="searchBtn">Explore</button>
+            <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 0.5rem;">(Static demo: Showing results for "Paris". In a full version, this would fetch live data.)</p>
+        </section>
+
+        <section class="weather-section default-content">
+            <h2>Current Weather in Paris</h2>
+            <div id="weatherInfo">
+                <div class="weather-icon">
+                    <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Sunny" /> <!-- Placeholder sunny icon -->
+                </div>
+                <p><strong>22°C</strong> in Paris</p>
+                <p>Sunny</p>
+                <p>Humidity: 60%</p>
+            </div>
+        </section>
+
+        <section class="photos-section default-content">
+            <h2>Photos of Paris</h2>
+            <div class="photos-grid" id="photosGrid">
+                <!-- Static Placeholder Photos from Unsplash (free, public URLs) -->
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3ab942aa1f8f?w=400&h=200&fit=crop" alt="Eiffel Tower at night" />
+                    <p>Photo by Nathan Anderson</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1459844941428-9a23f3a8ad52?w=400&h=200&fit=crop" alt="Seine River" />
+                    <p>Photo by Dimitar Donovski</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1516541196182-8a5e05a57e1a?w=400&h=200&fit=crop" alt="Louvre Museum" />
+                    <p>Photo by Chris Barbalis</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1520962922320-2038c2a2b6d7?w=400&h=200&fit=crop" alt="Paris streets" />
+                    <p>Photo by Nathan Dumlao</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop" alt="Arc de Triomphe" />
+                    <p>Photo by Ricardo Gomez Angel</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=200&fit=crop" alt="Montmartre" />
+                    <p>Photo by Ricardo Gomez Angel</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
